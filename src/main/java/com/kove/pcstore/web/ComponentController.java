@@ -58,7 +58,7 @@ public class ComponentController {
     }
 
     @GetMapping("/{id}}")
-    public String getBook(Model model, @PathVariable long id) {
+    public String getComponent(Model model, @PathVariable long id) {
 
         //Set<Component> component = componentRepository.findAll();
 
