@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:fragment="head">
+    <title>Confapp</title>
+    <meta charset="UTF-8"></meta>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+    <link th:href="@{/css/login.css}" rel="stylesheet" />
+</head>
+
+<body class="text-center">
+<form class="form-signin" method="POST" th:action="@{/register}">
+    <h1 class="h3 mb-3 font-weight-normal">Please register</h1>
+    <label for="inputUsername" class="sr-only">Username</label>
+    <input type="text" name="username" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+    <input type="hidden" name="_csrf" th:value="${_csrf.token}" />
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+    <a th:href="@{/login}" >Login</a>
+</form>
+
+</body>
+</html>

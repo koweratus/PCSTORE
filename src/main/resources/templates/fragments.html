@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:fragment="head">
+    <title>Confapp</title>
+    <meta charset="UTF-8"></meta>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
+    <script type="text/javascript" th:src="@{/js/jquery-3.3.1.slim.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/main.js}"></script>
+</head>
+<body>
+<div th:fragment="header">
+    <h1>PC Store</h1>
+    <div sec:authorize="isAuthenticated()">
+        <form method="POST" th:action="@{/logout}">
+            <span sec:authentication="name"></span>.
+            <input type="submit" value="Logout" class="btn btn-danger" />
+        </form>
+    </div>
+</div>
+
+<nav th:fragment="navbar" class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="#" >PC STORE</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/components/all}" > <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/components/new}" >New component</a>
+            </li>
+
+        </ul>
+        <form class="form-inline my-2 my-lg-0" method="POST" th:action="@{/logout}" sec:authorize="isAuthenticated()">
+            <span class="navbar-text" style="margin-right: 20px"> <span>You are logged in as</span> <span sec:authentication="name"></span>.</span>
+            <input class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Logout" />
+        </form>
+    </div>
+</nav>
+</body>
+</html>
