@@ -6,7 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface ManafacturerRepository  {
-    List<Manafacturer> findByFirstname(String name);
+public interface ManafacturerRepository  extends CrudRepository<Manafacturer, Long>{
+    List<Manafacturer> findByCompany(String company);
 
 }

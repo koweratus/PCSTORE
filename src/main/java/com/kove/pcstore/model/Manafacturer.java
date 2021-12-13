@@ -2,98 +2,88 @@ package com.kove.pcstore.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import javax.persistence.PrePersist;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.Objects;
 
-public class Manafacturer{
+@Entity
+public class Manafacturer {
 
-        private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
+    //@NotEmpty(message = "{validation.manafacturer.firstname.notEmpty}")
+   // @Size(min = 2, max = 20, message = "{validation.manafacturer.firstname.size}")
+    private String company;
 
-        private String firstname;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdAt;
 
+    @PrePersist
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+    void createdAt() {
+        this.createdAt = new Date();
+    }
 
-        private String lastname;
+    public Manafacturer() {
+    }
 
-        private Date createdAt;
+    public Manafacturer(String company) {
+        this.company = company;
+    }
 
-        @PrePersist
-        @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd/MM/yyyy")
-        void createdAt() {
-            this.createdAt = new Date();
-        }
+    public Manafacturer(Long id, String company, Date createdAt) {
+        this.id = id;
+        this.company = company;
+        this.createdAt = createdAt;
+    }
 
-        public Manafacturer() {
-        }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Manafacturer manafacturer = (Manafacturer) o;
+        return Objects.equals(id, manafacturer.id) &&
+                Objects.equals(company, manafacturer.company) &&
+                Objects.equals(createdAt, manafacturer.createdAt);
+    }
 
-        public Manafacturer(String firstname, String lastname) {
-            this.firstname = firstname;
-            this.lastname = lastname;
-        }
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, company, createdAt);
+    }
 
-        public Manafacturer(Long id, String firstname, String lastname, Date createdAt) {
-            this.id = id;
-            this.firstname = firstname;
-            this.lastname = lastname;
-            this.createdAt = createdAt;
-        }
+    @Override
+    public String toString() {
+        return "Manafacturer{" +
+                "id=" + id +
+                ", name='" + company + '\'' +
+                ", createdAt=" + createdAt +
+                '}';
+    }
 
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            Manafacturer manafacturer = (Manafacturer) o;
-            return Objects.equals(id, manafacturer.id) &&
-                    Objects.equals(firstname, manafacturer.firstname) &&
-                    Objects.equals(lastname, manafacturer.lastname) &&
-                    Objects.equals(createdAt, manafacturer.createdAt);
-        }
+    public Long getId() {
+        return id;
+    }
 
-        @Override
-        public int hashCode() {
-            return Objects.hash(id, firstname, lastname, createdAt);
-        }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-        @Override
-        public String toString() {
-            return "Manafacturer{" +
-                    "id=" + id +
-                    ", firstname='" + firstname + '\'' +
-                    ", lastname='" + lastname + '\'' +
-                    ", createdAt=" + createdAt +
-                    '}';
-        }
+    public String getCompany() {
+        return company;
+    }
 
-        public Long getId() {
-            return id;
-        }
+    public void setCompany(String firstname) {
+        this.company = firstname;
+    }
 
-        public void setId(Long id) {
-            this.id = id;
-        }
+    public Date getCreatedAt() {
+        return createdAt;
+    }
 
-        public String getFirstname() {
-            return firstname;
-        }
-
-        public void setFirstname(String firstname) {
-            this.firstname = firstname;
-        }
-
-        public String getLastname() {
-            return lastname;
-        }
-
-        public void setLastname(String lastname) {
-            this.lastname = lastname;
-        }
-
-        public Date getCreatedAt() {
-            return createdAt;
-        }
-
-        public void setCreatedAt(Date createdAt) {
-            this.createdAt = createdAt;
-        }
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
 }

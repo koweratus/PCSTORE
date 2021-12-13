@@ -12,13 +12,14 @@
         <div class="row">
             <form method="POST" th:object="${component}">
                 <div class="form-row">
-                    <div class="col-md-8 mb-3">
-                        <label for="manafacturer" >manafacturer</label>
-                        <input type="text" th:field="*{manafacturer}" class="form-control" />
-                        <span class="validation-error"
-                              th:if="${#fields.hasErrors('manafacturer')}"
-                              th:errors="*{manafacturer}">
-                        </span>
+                    <div class="col-md-6 mb-3">
+                        <label for="manafacturer" >Manafacturer</label>
+                        <select th:field="*{manafacturer}" class="form-control" >
+                            <option value="" >Choose value</option>
+                            <option th:each="manafacturer : ${manafacturers}"
+                                    th:value="${manafacturer.id}"
+                                    th:text="${manafacturer.company}"></option>
+                        </select>
                     </div>
                 </div>
 

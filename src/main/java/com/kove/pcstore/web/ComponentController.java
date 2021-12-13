@@ -3,7 +3,6 @@ package com.kove.pcstore.web;
 import com.kove.pcstore.data.ComponentRepository;
 import com.kove.pcstore.data.ManafacturerRepository;
 import com.kove.pcstore.model.Component;
-import com.kove.pcstore.service.ComponentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,25 +11,25 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Optional;
-import java.util.Set;
 
 @Controller
 @RequestMapping("/components")
 @SessionAttributes({"types"})
 public class ComponentController {
-    private final ComponentService componentService;
 
-    //private final ManafacturerRepository manafacturerRepository;
+    private final ManafacturerRepository manafacturerRepository;
+    private final ComponentRepository componentRepository;
 
     @Autowired
-    public ComponentController(ComponentService componentRepository) {
-        this.componentService = componentRepository;
+    public ComponentController(ComponentRepository componentRepository, ManafacturerRepository manafacturerRepository) {
+        this.manafacturerRepository = manafacturerRepository;
+        this.componentRepository = componentRepository;
     }
 
     @GetMapping("/all")
     public String allComponents(Model model) {
         Iterable<Component> components = null;
-        components =  componentService.findAll();
+        components =  componentRepository.findAll();
         model.addAttribute("components", components);
 
         return "allComponents";
@@ -39,7 +38,7 @@ public class ComponentController {
     @GetMapping("/new")
     public String showForm(Model model) {
         model.addAttribute("component", new Component());
-       // model.addAttribute("manafacturer", manafacturerRepository.findAll());
+        model.addAttribute("manafacturers", manafacturerRepository.findAll());
         model.addAttribute("types", Component.Type.values());
 
         return "componentProposal";
@@ -52,7 +51,7 @@ public class ComponentController {
             return "componentProposal";
         }
 
-        componentService.save(component);
+        componentRepository.save(component);
 
         return "componentAccepted";
     }
@@ -60,9 +59,9 @@ public class ComponentController {
     @GetMapping("/{id}}")
     public String getComponent(Model model, @PathVariable long id) {
 
-        //Set<Component> component = componentRepository.findAll();
+        Optional<Component> component = componentRepository.findById(id);
 
-        //model.addAttribute("component", component);
+        model.addAttribute("component", component);
 
         return "componentView";
     }

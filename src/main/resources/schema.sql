@@ -1,8 +1,15 @@
+CREATE TABLE IF NOT EXISTS MANAFACTURER (
+                                      ID IDENTITY,
+                                      COMPANY VARCHAR(20) NOT NULL,
+    CREATED_AT TIMESTAMP NOT NULL
+    );
+
+
 CREATE TABLE IF NOT EXISTS COMPONENT (
                                     ID IDENTITY,
                                     TITLE VARCHAR(50) NOT NULL,
     DESCRIPTION TEXT NOT NULL,
-    MANAFACTURER VARCHAR(15) NOT NULL,
+    MANAFACTURER_ID BIGINT NOT NULL,
     TYPE TEXT NOT NULL,
     CREATED_AT TIMESTAMP NOT NULL
     );

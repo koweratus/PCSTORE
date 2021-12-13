@@ -1,25 +1,34 @@
 package com.kove.pcstore.model;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.Objects;
 
 @Entity
-public class Component{
+public class Component {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Long id;
+    private Long id;
 
+    @Valid
+    @ManyToOne
+    @JoinColumn(name = "MANAFACTURER_ID")
+    private Manafacturer manafacturer;
 
-        private String manafacturer;
+   // @NotEmpty(message = "{validation.component.title.notEmpty}")
+   // @Size(min = 1, max = 50, message = "{validation.component.title.size}")
+    private String title;
 
-        private String title;
-
-        private String description;
+   // @NotEmpty(message = "{validation.component.description.notEmpty}")
+   // @Size(min = 1, max = 100, message = "{validation.component.description.size}")
+    private String description;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "TYPE")
-        private Type type;
+    private Type type;
 
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -31,25 +40,25 @@ public class Component{
         this.createdAt = new Date();
     }
 
-public static enum Type {
-    GPU,
-    CPU,
-    MOBO,
-    RAM,
-    PSU
-}
+    public static enum Type {
+        GPU,
+        CPU,
+        MOBO,
+        RAM,
+        PSU
+    }
 
     public Component() {
     }
 
-    public Component(String manafacturer, String title, String description, Type type) {
+    public Component(Manafacturer manafacturer, String title, String description, Type type) {
         this.manafacturer = manafacturer;
         this.title = title;
         this.description = description;
         this.type = type;
     }
 
-    public Component(Long id, String manafacturer, String title, String description, Type type, Date createdAt) {
+    public Component(Long id, Manafacturer manafacturer, String title, String description, Type type, Date createdAt) {
         this.id = id;
         this.manafacturer = manafacturer;
         this.title = title;
@@ -62,7 +71,7 @@ public static enum Type {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Component component= (Component) o;
+        Component component = (Component) o;
         return Objects.equals(id, component.id) &&
                 Objects.equals(manafacturer, component.manafacturer) &&
                 Objects.equals(title, component.title) &&
@@ -96,11 +105,11 @@ public static enum Type {
         this.id = id;
     }
 
-    public String getManafacturer() {
+    public Manafacturer getManafacturer() {
         return manafacturer;
     }
 
-    public void setManafacturer(String manafacturer) {
+    public void setManafacturer(Manafacturer manafacturer) {
         this.manafacturer = manafacturer;
     }
 
