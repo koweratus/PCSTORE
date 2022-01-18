@@ -13,19 +13,19 @@
 
             <div>
                 <div class="form-group">
-                    <label>Component title:</label>
+                    <label th:text="#{msg.manafacturer.title}" ></label>
                     <p th:text="${component.title}"></p>
                 </div>
                 <div class="form-group">
-                    <label >Component description:</label>
+                    <label th:text="#{msg.manafacturer.description}"></label>
                     <p th:text="${component.description}"></p>
                 </div>
                 <div class="form-group">
-                    <label >Component manafacturer:</label>
+                    <label th:text="#{msg.manafacturer.company}"></label>
                     <p th:text="${component.manafacturer}"></p>
                 </div>
                 <div class="form-group">
-                    <label >Component type:</label>
+                    <label th:text="#{msg.manafacturer.type}"></label>
                     <p th:text="${component.type}"></p>
                 </div>
             </div>

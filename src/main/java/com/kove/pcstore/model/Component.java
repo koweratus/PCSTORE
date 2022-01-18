@@ -18,12 +18,12 @@ public class Component {
     @JoinColumn(name = "MANAFACTURER_ID")
     private Manafacturer manafacturer;
 
-   // @NotEmpty(message = "{validation.component.title.notEmpty}")
-   // @Size(min = 1, max = 50, message = "{validation.component.title.size}")
+    @NotEmpty(message = "{validation.component.title.notEmpty}")
+    @Size(min = 1, max = 50, message = "{validation.component.title.size}")
     private String title;
 
-   // @NotEmpty(message = "{validation.component.description.notEmpty}")
-   // @Size(min = 1, max = 100, message = "{validation.component.description.size}")
+   @NotEmpty(message = "{validation.component.description.notEmpty}")
+    @Size(min = 1, max = 100, message = "{validation.component.description.size}")
     private String description;
 
     @Enumerated(EnumType.STRING)

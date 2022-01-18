@@ -1,4 +1,4 @@
-package hr.tomislav.papic.bookstore.activemq;
+package com.kove.pcstore.activemq;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.springframework.context.annotation.Bean;
@@ -29,7 +29,7 @@ public class ActiveMQ {
     public JmsTemplate jmsTemplate(){
         JmsTemplate template = new JmsTemplate();
         template.setConnectionFactory(connectionFactory());
-        template.setDefaultDestinationName("queuebooks");
+        template.setDefaultDestinationName("queuecomponents");
         return template;
     }
 

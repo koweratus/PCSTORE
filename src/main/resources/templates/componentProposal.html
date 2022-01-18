@@ -13,9 +13,9 @@
             <form method="POST" th:object="${component}">
                 <div class="form-row">
                     <div class="col-md-6 mb-3">
-                        <label for="manafacturer" >Manafacturer</label>
+                        <label for="manafacturer" th:text="#{msg.manafacturer.company}"></label>
                         <select th:field="*{manafacturer}" class="form-control" >
-                            <option value="" >Choose value</option>
+                            <option value="" th:text="#{msg.chooseValue}" ></option>
                             <option th:each="manafacturer : ${manafacturers}"
                                     th:value="${manafacturer.id}"
                                     th:text="${manafacturer.company}"></option>
@@ -25,7 +25,7 @@
 
                 <div class="form-row">
                     <div class="col-md-8 mb-3">
-                        <label for="title" >Title</label>
+                        <label for="title" th:text="#{msg.manafacturer.title}"></label>
                         <input type="text" th:field="*{title}" class="form-control" />
                         <span class="validation-error"
                               th:if="${#fields.hasErrors('title')}"
@@ -35,7 +35,7 @@
                 </div>
                 <div class="form-row">
                     <div class="col-md-10 mb-3">
-                        <label for="description" >Description</label>
+                        <label for="description" th:text="#{msg.manafacturer.description}"></label>
                         <textarea type="text" th:field="*{description}" cols="40" rows="10" class="form-control" ></textarea>
                         <span class="validation-error"
                               th:if="${#fields.hasErrors('description')}"
@@ -45,9 +45,9 @@
                 </div>
                 <div class="form-row">
                     <div class="col-md-6 mb-3">
-                        <label for="type" >Type </label>
+                        <label for="type" th:text="#{msg.manafacturer.type}"> </label>
                         <select th:field="*{type}" class="form-control" >
-                            <option value="" >Choose value:</option>
+                            <option value="" th:text="#{msg.chooseValue}"></option>
                             <option th:each="type : ${types}"
                                     th:value="${type}"
                                     th:text="${type}"></option>

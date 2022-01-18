@@ -12,7 +12,7 @@
 </head>
 <body>
 <div th:fragment="header">
-    <h1>PC Store</h1>
+    <h1 th:value="#{msg.pcstore}"></h1>
     <div sec:authorize="isAuthenticated()">
         <form method="POST" th:action="@{/logout}">
             <span sec:authentication="name"></span>.
@@ -22,7 +22,7 @@
 </div>
 
 <nav th:fragment="navbar" class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <a class="navbar-brand" href="http://localhost:8080/components/all" >PC STORE</a>
+    <a class="navbar-brand" href="http://localhost:8080/components/all" th:text="#{msg.pcstore}"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -33,12 +33,20 @@
                 <a class="nav-link" th:href="@{/components/all}" > <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" th:href="@{/components/new}" >New component</a>
+                <a class="nav-link" th:href="@{/components/new}" th:text="#{msg.newComponentButton}"></a>
             </li>
-
+            <li class="nav-item">
+                <div>
+                    <span style="color: rgba(255,255,255,.5);" th:text="#{msg.lang.current}"></span>:
+                    <select id="locales">
+                        <option value="hr" th:selected="${#locale.language == 'hr'}" th:text="#{msg.lang.hr}"></option>
+                        <option value="en" th:selected="${#locale.language == 'en'}" th:text="#{msg.lang.en}"></option>
+                    </select>
+                </div>
+            </li>
         </ul>
         <form class="form-inline my-2 my-lg-0" method="POST" th:action="@{/logout}" sec:authorize="isAuthenticated()">
-            <span class="navbar-text" style="margin-right: 20px"> <span>You are logged in as</span> <span sec:authentication="name"></span>.</span>
+            <span class="navbar-text" style="margin-right: 20px"> <span th:text="#{msg.userInfo}"></span> <span sec:authentication="name"></span>.</span>
             <input class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Logout" />
         </form>
     </div>

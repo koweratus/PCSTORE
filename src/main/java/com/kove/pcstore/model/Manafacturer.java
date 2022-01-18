@@ -3,6 +3,8 @@ package com.kove.pcstore.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.Objects;
 
@@ -13,8 +15,8 @@ public class Manafacturer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    //@NotEmpty(message = "{validation.manafacturer.firstname.notEmpty}")
-   // @Size(min = 2, max = 20, message = "{validation.manafacturer.firstname.size}")
+    @NotEmpty(message = "{validation.manafacturer.company.notEmpty}")
+    @Size(min = 2, max = 20, message = "{validation.manafacturer.company.size}")
     private String company;
 
     @Temporal(TemporalType.TIMESTAMP)

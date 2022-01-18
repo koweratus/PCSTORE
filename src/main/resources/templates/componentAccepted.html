@@ -12,7 +12,7 @@
         <div class="row">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-2 mb-3">Manafacturer:
+                    <div class="col-md-2 mb-3" th:text="#{msg.manafacturer.company}">
                     </div>
                     <div class="col-md-2 mb-3">
                         <span th:text="${component.manafacturer.company}" ></span>
@@ -20,7 +20,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-2 mb-3">
-                        <span >Title:</span>
+                        <span th:text="#{msg.manafacturer.title}"></span>
                     </div>
                     <div class="col-md-2 mb-3">
                         <span th:text="${component.title}" ></span>
@@ -28,14 +28,14 @@
                 </div>
                 <div class="row">
                     <div class="col-md-2 mb-3">
-                        <span  >Description</span>
+                        <span th:text="#{msg.manafacturer.description}" ></span>
                     </div>
                     <div class="col-md-2 mb-3">
                         <span th:text="${component.description}" ></span>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-2 mb-3" >Type
+                    <div class="col-md-2 mb-3" th:text="#{msg.manafacturer.type}">
                     </div>
                     <div class="col-md-2 mb-3">
                         <span th:text="${component.type}" ></span>
