@@ -39,7 +39,7 @@ public class ComponentRestController {
     @PostMapping(consumes = "application/json")
     public Component save(@RequestBody Component component) {
 
-        jmsTemplate.convertAndSend("Component title: " + component.getTitle() + "component description:" + component.getDescription());
+        jmsTemplate.convertAndSend("Component title: " + component.getTitle() + "component description:" + component.getDescription()  );
 
         return repository.save(component);
     }

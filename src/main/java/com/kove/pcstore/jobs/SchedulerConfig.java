@@ -9,7 +9,7 @@ public class SchedulerConfig {
 
     @Bean
     public JobDetail testJobDetail() {
-        return JobBuilder.newJob(TestJob.class).withIdentity("testJob")
+        return JobBuilder.newJob(ComponentJob.class).withIdentity("componentJob")
                 .storeDurably().build();
     }
 
